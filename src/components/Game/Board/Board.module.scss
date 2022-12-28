@@ -1,0 +1,17 @@
+.container {
+    --board-size: 4;
+
+    width: min-content;
+    display: grid;
+    grid-template-columns: repeat(var(--board-size), 100px);
+    grid-template-rows: repeat(var(--board-size), 100px);
+    gap: 8px;
+    background-color: #ccc;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.cell {
+    background-color: #aaa;
+    border-radius: 4px;
+}

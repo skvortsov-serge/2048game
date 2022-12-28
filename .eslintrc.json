@@ -1,0 +1,88 @@
+{
+    "env": {
+        "node": true,
+        "browser": true,
+        "es6": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "requireConfigFile": false,
+        "babelOptions": {
+            "presets": ["@babel/preset-react"]
+         },
+        "ecmaFeatures": {
+            "jsx": true,
+            "tsx": true
+        }
+    },
+    "settings": {
+        "import/resolver": {
+            "typescript": {
+                "alwaysTryTypes": true
+            },
+            "project": "packages/*/tsconfig.json"
+        },
+        "import/parsers": {
+            "@typescript-eslint/parser": [".ts", ".tsx"]
+        },
+        "react": {
+            "createClass": "createReactClass", // Regex for Component Factory to use,
+            // default to "createReactClass"
+            "pragma": "React", // Pragma to use, default to "React"
+            "version": "detect", // React version. "detect" automatically picks the version you have installed.
+            // You can also use `16.0`, `16.3`, etc, if you want to override the detected value.
+            // default to latest and warns if missing
+            // It will default to "detect" in the future
+            "flowVersion": "0.53" // Flow version
+        }
+    },
+    "plugins": ["react", "prettier", "import", "simple-import-sort", "@typescript-eslint"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        // Simple Import Sort Rules
+        "simple-import-sort/imports": [
+            "error",
+            {
+              "groups": [
+                // Packages `react` related packages come first.
+                ["^react", "^@?\\w"],
+                // Side effect imports.
+                ["^\\u0000"],
+                // Style imports.
+                ["^.+\\.s?css$"],
+                // Internal packages.
+                ["^(@|components)(/.*|$)"],
+                // Parent imports. Put `..` last.
+                ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+                // Other relative imports. Put same-folder imports and `.` last.
+                ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"]
+              ]
+            }
+          ],
+        "simple-import-sort/exports": "error",
+
+        //  Import Rules
+        "import/newline-after-import": ["error", { "count": 1 }],
+
+        //  React Rules
+        "react/no-array-index-key": "error",
+        "react/no-danger": "error",
+        "react/self-closing-comp": [
+            "error",
+            {
+                "component": true,
+                "html": false
+            }
+        ],
+
+        //  Prettier Rules
+        "prettier/prettier": "error"
+    }
+}

@@ -1,0 +1,7 @@
+ -m to build/
+coverage/
+node_modules/
+public/
+
+src/index.js
+src/serviceWorker.js
